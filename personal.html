@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Персональные тренировки — FITNESS HALL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* PAGE HERO */
+    .page-hero {
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 1.5rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 80% at 50% 50%, rgba(230,50,0,.15) 0%, transparent 70%),
+        linear-gradient(180deg, #0a0a0a 0%, #111 100%);
+    }
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(230,50,0,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(230,50,0,.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .page-hero-content { position: relative; z-index: 1; }
+    .page-hero .breadcrumb { font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray); margin-bottom: 1rem; }
+    .page-hero .breadcrumb a { color: var(--accent); }
+    .page-hero p.sub { color: var(--gray); font-size: 1.1rem; max-width: 580px; margin: 0.8rem auto 2rem; }
+
+    /* BENEFITS */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .benefit-card {
+      background: var(--bg3);
+      border: 1px solid var(--gray2);
+      border-left: 4px solid var(--accent);
+      padding: 2rem;
+      border-radius: var(--radius);
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .benefit-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(230,50,0,.15); }
+    .benefit-card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(230,50,0,.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.2rem;
+      color: var(--accent);
+    }
+    .benefit-card h4 { font-family: var(--font-main); letter-spacing: 0.06em; margin-bottom: 0.4rem; }
+    .benefit-card p  { color: var(--gray); font-size: 0.88rem; line-height: 1.6; }
+
+    /* STEPS */
+    .steps-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      counter-reset: steps;
+    }
+    .step {
+      background: var(--bg3);
+      border: 1px solid var(--gray2);
+      border-radius: var(--radius);
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      counter-increment: steps;
+    }
+    .step::before {
+      content: counter(steps, decimal-leading-zero);
+      font-family: var(--font-main);
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: rgba(230,50,0,.15);
+      position: absolute;
+      top: 0.8rem;
+      right: 1.2rem;
+      line-height: 1;
+    }
+    .step i   { font-size: 2rem; color: var(--accent); margin-bottom: 1rem; display: block; }
+    .step h4  { font-family: var(--font-main); letter-spacing: 0.06em; margin-bottom: 0.5rem; }
+    .step p   { color: var(--gray); font-size: 0.85rem; }
+
+    /* PERSONAL PRICES */
+    .personal-prices {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+    .pp-card {
+      background: var(--bg3);
+      border: 1px solid var(--gray2);
+      border-radius: var(--radius);
+      padding: 2rem;
+      text-align: center;
+      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+    }
+    .pp-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 16px 48px rgba(230,50,0,.2);
+      transform: translateY(-4px);
+    }
+    .pp-card.featured { border-color: var(--accent); box-shadow: 0 0 40px rgba(230,50,0,.25); }
+    .pp-sessions {
+      font-family: var(--font-main);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 0.6rem;
+    }
+    .pp-price-num {
+      font-family: var(--font-main);
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .pp-price-per { font-size: 0.78rem; color: var(--gray); margin-bottom: 1.2rem; text-transform: uppercase; letter-spacing: 0.08em; }
+    .pp-card ul   { text-align: left; margin-bottom: 1.2rem; }
+    .pp-card ul li {
+      color: var(--gray);
+      font-size: 0.88rem;
+      padding: 0.45rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .pp-card ul li::before { content: '✓'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+
+    /* TRAINERS SELECT */
+    .trainers-select {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .trainer-pick {
+      background: var(--bg3);
+      border: 2px solid var(--gray2);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+    .trainer-pick:hover,
+    .trainer-pick.selected {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(230,50,0,.25);
+    }
+    .trainer-pick.selected::after {
+      content: '✓ ВЫБРАН';
+      display: block;
+      background: var(--accent);
+      text-align: center;
+      font-family: var(--font-main);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      padding: 0.4rem;
+      color: var(--white);
+    }
+    .trainer-pick img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      filter: grayscale(30%);
+      transition: filter 0.4s ease;
+    }
+    .trainer-pick:hover img,
+    .trainer-pick.selected img { filter: grayscale(0%); }
+    .trainer-pick-info { padding: 1.2rem 1.4rem; }
+    .trainer-pick-info h4 { font-family: var(--font-main); letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+    .trainer-pick-info .spec { font-size: 0.78rem; color: var(--accent); text-transform: uppercase; font-family: var(--font-main); letter-spacing: 0.1em; }
+
+    /* BOOK FORM */
+    .book-form-wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      background: var(--bg3);
+      border: 1px solid rgba(230,50,0,.3);
+      border-radius: var(--radius);
+      padding: 3rem;
+    }
+    .book-form-wrap h3 { margin-bottom: 0.5rem; color: var(--accent); }
+    .book-form-wrap > p { color: var(--gray); font-size: 0.9rem; margin-bottom: 2rem; }
+    .book-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .book-form input,
+    .book-form select,
+    .book-form textarea {
+      background: var(--bg2);
+      border: 1px solid var(--gray2);
+      border-radius: var(--radius);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      padding: 0.9rem 1.2rem;
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .book-form select option { background: var(--bg2); }
+    .book-form input:focus,
+    .book-form select:focus,
+    .book-form textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(230,50,0,.15);
+    }
+    .book-form input::placeholder,
+    .book-form textarea::placeholder { color: var(--gray2); }
+
+    /* FAQ */
+    .faq-list { max-width: 800px; margin: 0 auto; }
+    .faq-item {
+      border-bottom: 1px solid var(--gray2);
+      overflow: hidden;
+    }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      color: var(--white);
+      font-family: var(--font-main);
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 1.2rem 0;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      transition: color var(--transition);
+    }
+    .faq-question:hover { color: var(--accent); }
+    .faq-question i {
+      color: var(--accent);
+      font-size: 0.8rem;
+      flex-shrink: 0;
+      transition: transform var(--transition);
+    }
+    .faq-item.open .faq-question i { transform: rotate(180deg); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .faq-item.open .faq-answer { max-height: 200px; }
+    .faq-answer p { color: var(--gray); font-size: 0.9rem; line-height: 1.7; padding-bottom: 1.2rem; }
+
+    @media (max-width: 700px) { .book-form-wrap { padding: 2rem 1.5rem; } }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo"><a href="index.html" style="color:inherit">FITNESS<span>&nbsp;HALL</span></a></div>
+    <button class="burger" aria-label="Меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul>
+      <li><a href="index.html">Главная</a></li>
+      <li class="nav-dropdown">
+        <a href="#" class="dropdown-trigger">О КЛУБЕ <i class="fa-solid fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="about.html"><i class="fa-solid fa-info-circle"></i> О нас</a></li>
+          <li><a href="akczii.html"><i class="fa-solid fa-tag"></i> Акции</a></li>
+          <li><a href="personal.html"><i class="fa-solid fa-user-check"></i> Персональные тренировки</a></li>
+        </ul>
+      </li>
+      <li><a href="index.html#advantages">Преимущества</a></li>
+      <li><a href="index.html#services">Тренировки</a></li>
+      <li><a href="index.html#trainers">Тренеры</a></li>
+      <li><a href="index.html#prices">Цены</a></li>
+      <li><a href="index.html#gallery">Фото</a></li>
+      <li><a href="index.html#contacts">Контакты</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-content">
+    <p class="breadcrumb"><a href="index.html">Главная</a> / Персональные тренировки</p>
+    <h1>ПЕРСОНАЛЬНЫЕ <span style="color:var(--accent)">ТРЕНИРОВКИ</span></h1>
+    <p class="sub">Один на один с лучшим тренером. Максимальный результат в минимальные сроки — это реально.</p>
+    <a href="#book" class="btn-primary">ВЫБРАТЬ ТРЕНЕРА</a>
+  </div>
+</div>
+
+<!-- ПРЕИМУЩЕСТВА -->
+<section style="background:var(--bg2)">
+  <div class="container">
+    <h2 class="section-title">ПОЧЕМУ ПЕРСОНАЛЬНЫЕ?</h2>
+    <div class="benefits-grid">
+      <div class="benefit-card fade-up">
+        <div class="benefit-card-icon"><i class="fa-solid fa-bullseye"></i></div>
+        <div>
+          <h4>ТОЧНАЯ ПРОГРАММА</h4>
+          <p>Программа тренировок составляется индивидуально под твои цели, физическую подготовку и ограничения по здоровью.</p>
+        </div>
+      </div>
+      <div class="benefit-card fade-up">
+        <div class="benefit-card-icon"><i class="fa-solid fa-rocket"></i></div>
+        <div>
+          <h4>БЫСТРЫЙ РЕЗУЛЬТАТ</h4>
+          <p>Персональные тренировки дают результат в 2–3 раза быстрее самостоятельных занятий за счёт правильной нагрузки.</p>
+        </div>
+      </div>
+      <div class="benefit-card fade-up">
+        <div class="benefit-card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div>
+          <h4>БЕЗОПАСНОСТЬ</h4>
+          <p>Тренер следит за техникой каждого упражнения — исключая риск травм и корректируя ошибки в режиме реального времени.</p>
+        </div>
+      </div>
+      <div class="benefit-card fade-up">
+        <div class="benefit-card-icon"><i class="fa-solid fa-chart-line"></i></div>
+        <div>
+          <h4>ОТСЛЕЖИВАНИЕ ПРОГРЕССА</h4>
+          <p>Регулярные замеры, фотофиксация и корректировка программы — ты видишь свой прогресс каждую неделю.</p>
+        </div>
+      </div>
+      <div class="benefit-card fade-up">
+        <div class="benefit-card-icon"><i class="fa-solid fa-brain"></i></div>
+        <div>
+          <h4>МОТИВАЦИЯ</h4>
+          <p>Тренер — твой личный помощник и мотиватор. Ни одной пропущенной тренировки, ни одного повода сдаться.</p>
+        </div>
+      </div>
+      <div class="benefit-card fade-up">
+        <div class="benefit-card-icon"><i class="fa-solid fa-utensils"></i></div>
+        <div>
+          <h4>ПЛАН ПИТАНИЯ</h4>
+          <p>В пакет входит консультация нутрициолога и составление рациона под твои цели и образ жизни.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- КАК ЭТО РАБОТАЕТ -->
+<section style="background:var(--bg)">
+  <div class="container">
+    <h2 class="section-title">КАК ЭТО РАБОТАЕТ</h2>
+    <div class="steps-list">
+      <div class="step fade-up">
+        <i class="fa-solid fa-phone"></i>
+        <h4>ЗАЯВКА</h4>
+        <p>Оставляешь заявку — мы связываемся в течение 15 минут и назначаем первую встречу.</p>
+      </div>
+      <div class="step fade-up">
+        <i class="fa-solid fa-clipboard-check"></i>
+        <h4>ДИАГНОСТИКА</h4>
+        <p>Тренер проводит фитнес-тест, узнаёт твои цели и составляет индивидуальную программу.</p>
+      </div>
+      <div class="step fade-up">
+        <i class="fa-solid fa-dumbbell"></i>
+        <h4>ТРЕНИРОВКИ</h4>
+        <p>Занимаешься по персональной программе. Тренер контролирует каждое движение.</p>
+      </div>
+      <div class="step fade-up">
+        <i class="fa-solid fa-chart-line"></i>
+        <h4>РЕЗУЛЬТАТ</h4>
+        <p>Отслеживаешь прогресс, получаешь корректировки программы и достигаешь своей цели.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ЦЕНЫ -->
+<section style="background:var(--bg2)">
+  <div class="container">
+    <h2 class="section-title">ЦЕНЫ НА ПЕРСОНАЛЬНЫЕ</h2>
+    <div class="personal-prices">
+
+      <div class="pp-card fade-up">
+        <p class="pp-sessions">1 тренировка</p>
+        <div class="pp-price-num">1 500 ₽</div>
+        <p class="pp-price-per">за занятие · 60 мин</p>
+        <ul>
+          <li>1 персональная тренировка</li>
+          <li>Разработка программы</li>
+          <li>Контроль техники</li>
+        </ul>
+        <a href="#book" class="btn-secondary">ЗАПИСАТЬСЯ</a>
+      </div>
+
+      <div class="pp-card featured fade-up">
+        <p class="pp-sessions">Пакет 8 тренировок</p>
+        <div class="pp-price-num">9 600 ₽</div>
+        <p class="pp-price-per">1 200 ₽ / занятие · 60 мин</p>
+        <ul>
+          <li>8 персональных тренировок</li>
+          <li>Индивидуальная программа</li>
+          <li>Контроль питания</li>
+          <li>Промежуточные замеры</li>
+          <li>Скидка −20%</li>
+        </ul>
+        <a href="#book" class="btn-primary">ЗАПИСАТЬСЯ</a>
+      </div>
+
+      <div class="pp-card fade-up">
+        <p class="pp-sessions">Пакет 20 тренировок</p>
+        <div class="pp-price-num">20 000 ₽</div>
+        <p class="pp-price-per">1 000 ₽ / занятие · 60 мин</p>
+        <ul>
+          <li>20 персональных тренировок</li>
+          <li>Полная программа трансформации</li>
+          <li>План питания от нутрициолога</li>
+          <li>Еженедельные замеры</li>
+          <li>Скидка −33%</li>
+        </ul>
+        <a href="#book" class="btn-secondary">ЗАПИСАТЬСЯ</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ВЫБОР ТРЕНЕРА -->
+<section id="book" style="background:var(--bg)">
+  <div class="container">
+    <h2 class="section-title">ВЫБЕРИ СВОЕГО ТРЕНЕРА</h2>
+    <p style="text-align:center;color:var(--gray);margin-bottom:2.5rem;font-size:0.95rem">Нажми на карточку, чтобы выбрать тренера, с которым хочешь заниматься</p>
+
+    <div class="trainers-select" id="trainersSelect">
+      <div class="trainer-pick fade-up" data-name="Алексей Иванов">
+        <img src="treners/abdullah-ali-L2Nw-onZOX4-unsplash.jpg" alt="Алексей Иванов" loading="lazy" />
+        <div class="trainer-pick-info">
+          <h4>АЛЕКСЕЙ ИВАНОВ</h4>
+          <p class="spec">Силовые · Бодибилдинг</p>
+        </div>
+      </div>
+      <div class="trainer-pick fade-up" data-name="Мария Петрова">
+        <img src="treners/rafik-wahba-ZkAy5kqvs-A-unsplash.jpg" alt="Мария Петрова" loading="lazy" />
+        <div class="trainer-pick-info">
+          <h4>МАРИЯ ПЕТРОВА</h4>
+          <p class="spec">Йога · Пилатес · Стретчинг</p>
+        </div>
+      </div>
+      <div class="trainer-pick fade-up" data-name="Дмитрий Сидоров">
+        <img src="treners/samuel-girven-Ppua0I4VjqE-unsplash.jpg" alt="Дмитрий Сидоров" loading="lazy" />
+        <div class="trainer-pick-info">
+          <h4>ДМИТРИЙ СИДОРОВ</h4>
+          <p class="spec">Кроссфит · Функциональный</p>
+        </div>
+      </div>
+      <div class="trainer-pick fade-up" data-name="Сергей Козлов">
+        <img src="treners/sergio-kian-KF2be1Gildw-unsplash.jpg" alt="Сергей Козлов" loading="lazy" />
+        <div class="trainer-pick-info">
+          <h4>СЕРГЕЙ КОЗЛОВ</h4>
+          <p class="spec">Бокс · MMA · Единоборства</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ФОРМА ЗАПИСИ -->
+    <div style="margin-top:3rem">
+      <div class="book-form-wrap">
+        <h3><i class="fa-solid fa-bolt"></i> ЗАПИСАТЬСЯ НА ТРЕНИРОВКУ</h3>
+        <p>Заполни форму — мы свяжемся с тобой и подтвердим дату первого занятия.</p>
+        <form class="book-form contact-form" novalidate>
+          <input type="text"  id="bookName"    placeholder="Ваше имя"  required />
+          <input type="tel"   id="bookPhone"   placeholder="Телефон"   required />
+          <input type="email" id="bookEmail"   placeholder="Email"     />
+          <select id="bookTrainer">
+            <option value="" disabled selected>Выберите тренера</option>
+            <option>Алексей Иванов — Силовые / Бодибилдинг</option>
+            <option>Мария Петрова — Йога / Пилатес</option>
+            <option>Дмитрий Сидоров — Кроссфит</option>
+            <option>Сергей Козлов — Бокс / MMA</option>
+          </select>
+          <select id="bookPackage">
+            <option value="" disabled selected>Выберите пакет</option>
+            <option>1 тренировка — 1 500 ₽</option>
+            <option>Пакет 8 тренировок — 9 600 ₽</option>
+            <option>Пакет 20 тренировок — 20 000 ₽</option>
+          </select>
+          <textarea placeholder="Ваши цели или пожелания (необязательно)"></textarea>
+          <button type="submit" class="btn-primary" style="width:100%;text-align:center">ОТПРАВИТЬ ЗАЯВКУ</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background:var(--bg2)">
+  <div class="container">
+    <h2 class="section-title">ЧАСТЫЕ ВОПРОСЫ</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question">Нужна ли подготовка перед первым занятием? <i class="fa-solid fa-chevron-down"></i></button>
+        <div class="faq-answer"><p>Нет. На первой встрече тренер оценит твой уровень и составит программу с нуля. Главное — прийти в удобной спортивной одежде и хорошем настроении.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Как часто проводятся персональные тренировки? <i class="fa-solid fa-chevron-down"></i></button>
+        <div class="faq-answer"><p>Оптимальный ритм — 2–3 раза в неделю. Расписание составляется индивидуально и удобно для тебя. Тренер гибко подстраивается под твой график.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Можно ли сменить тренера? <i class="fa-solid fa-chevron-down"></i></button>
+        <div class="faq-answer"><p>Да, в любой момент. Просто сообщи администратору или напиши нам. Мы подберём другого специалиста без дополнительных условий.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Что делать, если не могу прийти на тренировку? <i class="fa-solid fa-chevron-down"></i></button>
+        <div class="faq-answer"><p>Тренировку можно перенести, предупредив тренера минимум за 3 часа. Тренировки из пакета не сгорают — их срок действия 3 месяца с момента покупки.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Входит ли план питания в стоимость? <i class="fa-solid fa-chevron-down"></i></button>
+        <div class="faq-answer"><p>Базовые рекомендации по питанию включены в любой пакет. Полноценный план от нутрициолога входит в пакет 20 тренировок или оплачивается отдельно (1 500 ₽).</p></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">FITNESS<span style="color:var(--accent)">&nbsp;HALL</span></div>
+    <nav class="footer-links">
+      <a href="about.html">О нас</a>
+      <a href="akczii.html">Акции</a>
+      <a href="personal.html">Персональные</a>
+      <a href="index.html#contacts">Контакты</a>
+    </nav>
+    <p>&copy; 2024 FITNESS HALL. Все права защищены.</p>
+  </div>
+</footer>
+
+<div class="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal">
+    <button class="modal-close">&times;</button>
+    <h3><i class="fa-solid fa-bolt"></i> ЗАПИСАТЬСЯ</h3>
+    <p>Оставьте контакты — перезвоним в течение 15 минут.</p>
+    <form class="contact-form modal-form" novalidate>
+      <input type="text" placeholder="Ваше имя"  required />
+      <input type="tel"  placeholder="Телефон"   required />
+      <button type="submit" class="btn-primary" style="width:100%;text-align:center">ОТПРАВИТЬ</button>
+    </form>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+<script>
+// Trainer card selection
+document.querySelectorAll('.trainer-pick').forEach(card => {
+  card.addEventListener('click', () => {
+    document.querySelectorAll('.trainer-pick').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    // sync with select
+    const name = card.dataset.name;
+    const sel  = document.getElementById('bookTrainer');
+    if (sel) {
+      for (let i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].text.startsWith(name)) { sel.selectedIndex = i; break; }
+      }
+    }
+  });
+});
+
+// FAQ accordion
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>

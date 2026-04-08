@@ -35,6 +35,26 @@ if (burger && navUl) {
   });
 }
 
+// ─── DROPDOWN MENU ───────────────────────────────────
+document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
+  trigger.addEventListener('click', e => {
+    e.preventDefault();
+    const li = trigger.closest('.nav-dropdown');
+    li.classList.toggle('open');
+    // close others
+    document.querySelectorAll('.nav-dropdown').forEach(d => {
+      if (d !== li) d.classList.remove('open');
+    });
+  });
+});
+
+// close dropdown on outside click
+document.addEventListener('click', e => {
+  if (!e.target.closest('.nav-dropdown')) {
+    document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+  }
+});
+
 // ─── SMOOTH ACTIVE LINK ───────────────────────────────
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('nav ul li a');

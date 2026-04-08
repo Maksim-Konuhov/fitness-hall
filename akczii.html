@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Акции — FITNESS HALL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .page-hero {
+      min-height: 42vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 1.5rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 80% at 50% 50%, rgba(230,50,0,.13) 0%, transparent 70%),
+        linear-gradient(180deg, #0a0a0a 0%, #111 100%);
+    }
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(230,50,0,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(230,50,0,.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .page-hero-content { position: relative; z-index: 1; }
+    .page-hero .breadcrumb { font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray); margin-bottom: 1rem; }
+    .page-hero .breadcrumb a { color: var(--accent); }
+    .page-hero p { color: var(--gray); font-size: 1.1rem; max-width: 520px; margin: 0 auto; }
+
+    /* promo cards */
+    .promo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.8rem;
+    }
+    .promo-card {
+      background: var(--bg3);
+      border: 1px solid var(--gray2);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    }
+    .promo-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(230,50,0,.2);
+      border-color: var(--accent);
+    }
+    .promo-card-head {
+      background: linear-gradient(135deg, rgba(230,50,0,.25) 0%, rgba(230,50,0,.05) 100%);
+      border-bottom: 1px solid rgba(230,50,0,.2);
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+    .promo-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.4rem;
+      color: var(--white);
+    }
+    .promo-card-head h3 { color: var(--white); margin-bottom: 0.2rem; }
+    .promo-badge {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-family: var(--font-main);
+    }
+    .promo-card-body { padding: 1.8rem 2rem; }
+    .promo-card-body p { color: var(--gray); font-size: 0.92rem; line-height: 1.7; margin-bottom: 1.2rem; }
+    .promo-discount {
+      font-family: var(--font-main);
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .promo-valid {
+      font-size: 0.78rem;
+      color: var(--gray2);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .promo-valid i { color: var(--accent); font-size: 0.75rem; }
+
+    /* hot badge */
+    .promo-card.hot .promo-card-head {
+      background: linear-gradient(135deg, rgba(230,50,0,.4) 0%, rgba(230,50,0,.1) 100%);
+    }
+    .promo-card.hot { border-color: var(--accent); }
+    .hot-label {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--accent);
+      color: var(--white);
+      font-family: var(--font-main);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 2px;
+    }
+    .promo-card { position: relative; }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo"><a href="index.html" style="color:inherit">FITNESS<span>&nbsp;HALL</span></a></div>
+    <button class="burger" aria-label="Меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul>
+      <li><a href="index.html">Главная</a></li>
+      <li class="nav-dropdown">
+        <a href="#" class="dropdown-trigger">О КЛУБЕ <i class="fa-solid fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="about.html"><i class="fa-solid fa-info-circle"></i> О нас</a></li>
+          <li><a href="akczii.html"><i class="fa-solid fa-tag"></i> Акции</a></li>
+          <li><a href="personal.html"><i class="fa-solid fa-user-check"></i> Персональные тренировки</a></li>
+        </ul>
+      </li>
+      <li><a href="index.html#advantages">Преимущества</a></li>
+      <li><a href="index.html#services">Тренировки</a></li>
+      <li><a href="index.html#trainers">Тренеры</a></li>
+      <li><a href="index.html#prices">Цены</a></li>
+      <li><a href="index.html#gallery">Фото</a></li>
+      <li><a href="index.html#contacts">Контакты</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-content">
+    <p class="breadcrumb"><a href="index.html">Главная</a> / Акции</p>
+    <h1>АКТУАЛЬНЫЕ <span style="color:var(--accent)">АКЦИИ</span></h1>
+    <p>Выгодные предложения для новых и постоянных клиентов. Успей воспользоваться!</p>
+  </div>
+</div>
+
+<!-- АКЦИИ -->
+<section style="background:var(--bg2)">
+  <div class="container">
+    <div class="promo-grid">
+
+      <div class="promo-card hot fade-up">
+        <span class="hot-label"><i class="fa-solid fa-fire"></i> Горячее</span>
+        <div class="promo-card-head">
+          <div class="promo-icon"><i class="fa-solid fa-gift"></i></div>
+          <div>
+            <h3>ПЕРВАЯ ТРЕНИРОВКА</h3>
+            <span class="promo-badge">Для новых клиентов</span>
+          </div>
+        </div>
+        <div class="promo-card-body">
+          <div class="promo-discount">БЕСПЛАТНО</div>
+          <p class="promo-valid"><i class="fa-solid fa-clock"></i> Действует постоянно</p>
+          <p>Приходи на первое пробное занятие абсолютно бесплатно. Познакомься с тренером, попробуй оборудование и почувствуй атмосферу зала без каких-либо обязательств.</p>
+          <a href="index.html#contacts" class="btn-primary" data-modal>ЗАПИСАТЬСЯ</a>
+        </div>
+      </div>
+
+      <div class="promo-card fade-up">
+        <div class="promo-card-head">
+          <div class="promo-icon"><i class="fa-solid fa-user-plus"></i></div>
+          <div>
+            <h3>ПРИВЕДИ ДРУГА</h3>
+            <span class="promo-badge">Для действующих клиентов</span>
+          </div>
+        </div>
+        <div class="promo-card-body">
+          <div class="promo-discount">−20%</div>
+          <p class="promo-valid"><i class="fa-solid fa-clock"></i> До 30 апреля 2025</p>
+          <p>Приведи друга — и вы оба получаете скидку 20% на следующий месяц абонемента. Чем больше друзей, тем больше скидок. Без ограничений!</p>
+          <a href="index.html#contacts" class="btn-secondary" data-modal>УЗНАТЬ ПОДРОБНЕЕ</a>
+        </div>
+      </div>
+
+      <div class="promo-card fade-up">
+        <div class="promo-card-head">
+          <div class="promo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div>
+            <h3>СТУДЕНЧЕСКАЯ СКИДКА</h3>
+            <span class="promo-badge">По студенческому билету</span>
+          </div>
+        </div>
+        <div class="promo-card-body">
+          <div class="promo-discount">−15%</div>
+          <p class="promo-valid"><i class="fa-solid fa-infinity"></i> Постоянная акция</p>
+          <p>Предъяви действующий студенческий билет и получи постоянную скидку 15% на все виды абонементов. Спорт — это инвестиция в себя!</p>
+          <a href="index.html#contacts" class="btn-secondary" data-modal>УЗНАТЬ ПОДРОБНЕЕ</a>
+        </div>
+      </div>
+
+      <div class="promo-card fade-up">
+        <div class="promo-card-head">
+          <div class="promo-icon"><i class="fa-solid fa-people-roof"></i></div>
+          <div>
+            <h3>СЕМЕЙНЫЙ АБОНЕМЕНТ</h3>
+            <span class="promo-badge">От 2 человек</span>
+          </div>
+        </div>
+        <div class="promo-card-body">
+          <div class="promo-discount">−25%</div>
+          <p class="promo-valid"><i class="fa-solid fa-infinity"></i> Постоянная акция</p>
+          <p>Оформи абонементы для всей семьи и получи скидку 25% на каждый. Спорт объединяет! Действует при единовременной оплате от 2 человек.</p>
+          <a href="index.html#contacts" class="btn-secondary" data-modal>УЗНАТЬ ПОДРОБНЕЕ</a>
+        </div>
+      </div>
+
+      <div class="promo-card hot fade-up">
+        <span class="hot-label"><i class="fa-solid fa-fire"></i> Горячее</span>
+        <div class="promo-card-head">
+          <div class="promo-icon"><i class="fa-solid fa-calendar-days"></i></div>
+          <div>
+            <h3>3 МЕСЯЦА = 2</h3>
+            <span class="promo-badge">Абонемент на 3 месяца</span>
+          </div>
+        </div>
+        <div class="promo-card-body">
+          <div class="promo-discount">−33%</div>
+          <p class="promo-valid"><i class="fa-solid fa-clock"></i> До 15 мая 2025</p>
+          <p>Купи абонемент на 3 месяца — плати только за 2. Экономия составит более 2 000 ₽. Лучшее предложение для тех, кто настроен серьёзно!</p>
+          <a href="index.html#contacts" class="btn-primary" data-modal>ВОСПОЛЬЗОВАТЬСЯ</a>
+        </div>
+      </div>
+
+      <div class="promo-card fade-up">
+        <div class="promo-card-head">
+          <div class="promo-icon"><i class="fa-solid fa-sun"></i></div>
+          <div>
+            <h3>УТРЕННЯЯ СКИДКА</h3>
+            <span class="promo-badge">Тренировки до 10:00</span>
+          </div>
+        </div>
+        <div class="promo-card-body">
+          <div class="promo-discount">−10%</div>
+          <p class="promo-valid"><i class="fa-solid fa-infinity"></i> Постоянная акция</p>
+          <p>Приходи тренироваться до 10:00 и получай скидку 10% на любой абонемент. Залы свободны, тренеры готовы — начни день с заряда энергии!</p>
+          <a href="index.html#contacts" class="btn-secondary" data-modal>УЗНАТЬ ПОДРОБНЕЕ</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="container">
+    <h2>НЕ УПУСТИ <span style="color:var(--accent)">СВОЮ СКИДКУ</span></h2>
+    <p>Оставь заявку — и мы подберём для тебя лучшее предложение.</p>
+    <a href="#" class="btn-primary" data-modal>ПОЛУЧИТЬ СКИДКУ</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">FITNESS<span style="color:var(--accent)">&nbsp;HALL</span></div>
+    <nav class="footer-links">
+      <a href="about.html">О нас</a>
+      <a href="akczii.html">Акции</a>
+      <a href="personal.html">Персональные</a>
+      <a href="index.html#contacts">Контакты</a>
+    </nav>
+    <p>&copy; 2024 FITNESS HALL. Все права защищены.</p>
+  </div>
+</footer>
+
+<div class="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal">
+    <button class="modal-close">&times;</button>
+    <h3><i class="fa-solid fa-bolt"></i> ЗАПИСАТЬСЯ</h3>
+    <p>Оставьте контакты — перезвоним в течение 15 минут.</p>
+    <form class="contact-form modal-form" novalidate>
+      <input type="text" placeholder="Ваше имя"  required />
+      <input type="tel"  placeholder="Телефон"   required />
+      <button type="submit" class="btn-primary" style="width:100%;text-align:center">ОТПРАВИТЬ</button>
+    </form>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>

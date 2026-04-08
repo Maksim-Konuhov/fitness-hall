@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>О нас — FITNESS HALL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .page-hero {
+      min-height: 42vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 1.5rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 80% at 50% 50%, rgba(230,50,0,.13) 0%, transparent 70%),
+        linear-gradient(180deg, #0a0a0a 0%, #111 100%);
+    }
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(230,50,0,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(230,50,0,.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .page-hero-content { position: relative; z-index: 1; }
+    .page-hero .breadcrumb {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 1rem;
+    }
+    .page-hero .breadcrumb a { color: var(--accent); }
+    .page-hero h1 { margin-bottom: 0.8rem; }
+    .page-hero p {
+      color: var(--gray);
+      font-size: 1.1rem;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .about-story {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .about-story img {
+      width: 100%;
+      border-radius: 4px;
+      filter: grayscale(20%);
+    }
+    .about-story h2 { color: var(--accent); margin-bottom: 1.2rem; }
+    .about-story p  { color: var(--gray); line-height: 1.8; margin-bottom: 1rem; }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .value-item {
+      background: var(--bg3);
+      border: 1px solid var(--gray2);
+      border-top: 3px solid var(--accent);
+      padding: 1.8rem;
+      border-radius: var(--radius);
+      text-align: center;
+    }
+    .value-item i  { font-size: 2rem; color: var(--accent); margin-bottom: 1rem; display: block; }
+    .value-item h4 { font-family: var(--font-main); letter-spacing: 0.06em; margin-bottom: 0.5rem; }
+    .value-item p  { color: var(--gray); font-size: 0.85rem; }
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      flex-wrap: wrap;
+      text-align: center;
+      padding: 3rem 0;
+    }
+    .stats-row .num  { font-family: var(--font-main); font-size: 3.5rem; font-weight: 700; color: var(--accent); display: block; line-height: 1; }
+    .stats-row .lbl  { font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray); margin-top: 0.3rem; display: block; }
+    .team-note {
+      background: var(--bg3);
+      border-left: 4px solid var(--accent);
+      padding: 1.5rem 2rem;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      margin-top: 3rem;
+    }
+    .team-note p { color: var(--gray); font-size: 1rem; line-height: 1.7; font-style: italic; }
+    .team-note cite { display: block; margin-top: 0.8rem; font-family: var(--font-main); letter-spacing: 0.06em; color: var(--accent); font-style: normal; }
+    @media (max-width: 800px) { .about-story { grid-template-columns: 1fr; gap: 2rem; } }
+    @media (max-width: 600px) { .stats-row { gap: 2rem; } }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo"><a href="index.html" style="color:inherit">FITNESS<span>&nbsp;HALL</span></a></div>
+    <button class="burger" aria-label="Меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul>
+      <li><a href="index.html">Главная</a></li>
+      <li class="nav-dropdown">
+        <a href="#" class="dropdown-trigger">О КЛУБЕ <i class="fa-solid fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="about.html"><i class="fa-solid fa-info-circle"></i> О нас</a></li>
+          <li><a href="akczii.html"><i class="fa-solid fa-tag"></i> Акции</a></li>
+          <li><a href="personal.html"><i class="fa-solid fa-user-check"></i> Персональные тренировки</a></li>
+        </ul>
+      </li>
+      <li><a href="index.html#advantages">Преимущества</a></li>
+      <li><a href="index.html#services">Тренировки</a></li>
+      <li><a href="index.html#trainers">Тренеры</a></li>
+      <li><a href="index.html#prices">Цены</a></li>
+      <li><a href="index.html#gallery">Фото</a></li>
+      <li><a href="index.html#contacts">Контакты</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-content">
+    <p class="breadcrumb"><a href="index.html">Главная</a> / О нас</p>
+    <h1>О <span style="color:var(--accent)">НАС</span></h1>
+    <p>Узнай, как FITNESS HALL стал домом для тысяч людей, которые выбрали силу и результат.</p>
+  </div>
+</div>
+
+<!-- ИСТОРИЯ -->
+<section style="background:var(--bg2)">
+  <div class="container">
+    <div class="about-story">
+      <div>
+        <h2>НАША ИСТОРИЯ</h2>
+        <p>FITNESS HALL был основан в 2016 году командой спортсменов, которые устали от обычных тренажёрных залов. Мы хотели создать место, где каждый — от новичка до мастера спорта — чувствует себя дома.</p>
+        <p>За 8 лет мы выросли из небольшого зала площадью 400 м² до современного фитнес-комплекса на 2 000 м² с бассейном, сауной, залом единоборств и студиями групповых программ.</p>
+        <p>Сегодня FITNESS HALL — это более 1 200 постоянных членов, 15 профессиональных тренеров и команда, которая живёт спортом.</p>
+        <a href="index.html#contacts" class="btn-primary" style="margin-top:1.5rem">СТАТЬ ЧАСТЬЮ КОМАНДЫ</a>
+      </div>
+      <img
+        src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=700&h=500&fit=crop&q=80"
+        alt="История FITNESS HALL"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- СТАТИСТИКА -->
+<section style="background:var(--bg);border-top:1px solid rgba(230,50,0,.1);border-bottom:1px solid rgba(230,50,0,.1)">
+  <div class="container">
+    <div class="stats-row">
+      <div><span class="num">2016</span><span class="lbl">Год основания</span></div>
+      <div><span class="num">1 200+</span><span class="lbl">Участников</span></div>
+      <div><span class="num">15+</span><span class="lbl">Тренеров</span></div>
+      <div><span class="num">2 000 м²</span><span class="lbl">Площадь</span></div>
+      <div><span class="num">500+</span><span class="lbl">Тренажёров</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- МИССИЯ И ЦЕННОСТИ -->
+<section style="background:var(--bg2)">
+  <div class="container">
+    <h2 class="section-title">НАШИ ЦЕННОСТИ</h2>
+    <div class="values-grid">
+      <div class="value-item fade-up">
+        <i class="fa-solid fa-bullseye"></i>
+        <h4>РЕЗУЛЬТАТ</h4>
+        <p>Каждый клиент получает персональный план и отслеживает прогресс.</p>
+      </div>
+      <div class="value-item fade-up">
+        <i class="fa-solid fa-shield-halved"></i>
+        <h4>БЕЗОПАСНОСТЬ</h4>
+        <p>Тренировки под контролем профессионалов. Техника прежде всего.</p>
+      </div>
+      <div class="value-item fade-up">
+        <i class="fa-solid fa-users"></i>
+        <h4>СООБЩЕСТВО</h4>
+        <p>Атмосфера взаимной поддержки и мотивации каждый день.</p>
+      </div>
+      <div class="value-item fade-up">
+        <i class="fa-solid fa-star"></i>
+        <h4>КАЧЕСТВО</h4>
+        <p>Только премиальное оборудование и постоянное обслуживание.</p>
+      </div>
+      <div class="value-item fade-up">
+        <i class="fa-solid fa-heart-pulse"></i>
+        <h4>ЗДОРОВЬЕ</h4>
+        <p>Тренировки, питание и восстановление — единая система.</p>
+      </div>
+      <div class="value-item fade-up">
+        <i class="fa-solid fa-rocket"></i>
+        <h4>ПРОГРЕСС</h4>
+        <p>Мы растём вместе с тобой и постоянно улучшаем наши программы.</p>
+      </div>
+    </div>
+
+    <blockquote class="team-note">
+      <p>«Мы создали FITNESS HALL не как бизнес, а как место, куда хочется возвращаться каждый день. Где каждая тренировка делает тебя немного лучше. Наша цель — чтобы спорт стал частью твоей жизни, а не повинностью.»</p>
+      <cite>— Основатель FITNESS HALL</cite>
+    </blockquote>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">FITNESS<span style="color:var(--accent)">&nbsp;HALL</span></div>
+    <nav class="footer-links">
+      <a href="about.html">О нас</a>
+      <a href="akczii.html">Акции</a>
+      <a href="personal.html">Персональные</a>
+      <a href="index.html#contacts">Контакты</a>
+    </nav>
+    <p>&copy; 2024 FITNESS HALL. Все права защищены.</p>
+  </div>
+</footer>
+
+<div class="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal">
+    <button class="modal-close">&times;</button>
+    <h3><i class="fa-solid fa-bolt"></i> ЗАПИСАТЬСЯ</h3>
+    <p>Оставьте контакты — перезвоним в течение 15 минут.</p>
+    <form class="contact-form modal-form" novalidate>
+      <input type="text" placeholder="Ваше имя"  required />
+      <input type="tel"  placeholder="Телефон"   required />
+      <button type="submit" class="btn-primary" style="width:100%;text-align:center">ОТПРАВИТЬ</button>
+    </form>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
