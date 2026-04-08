@@ -144,6 +144,51 @@ forms.forEach(form => {
   });
 });
 
+// ─── REVIEWS SLIDER ──────────────────────────────────
+(function () {
+  const track   = document.querySelector('.reviews-track');
+  const btnPrev = document.querySelector('.rev-prev');
+  const btnNext = document.querySelector('.rev-next');
+  if (!track || !btnPrev || !btnNext) return;
+
+  const cards       = track.querySelectorAll('.review-card');
+  let   current     = 0;
+  let   perView     = 4;
+
+  function getPerView() {
+    const w = window.innerWidth;
+    if (w < 600)  return 1;
+    if (w < 900)  return 2;
+    if (w < 1100) return 3;
+    return 4;
+  }
+
+  function update() {
+    perView = getPerView();
+    const cardW  = track.querySelector('.review-card').getBoundingClientRect().width;
+    const gap    = 24;
+    const maxIdx = Math.max(0, cards.length - perView);
+    current      = Math.min(current, maxIdx);
+    track.style.transform = `translateX(-${current * (cardW + gap)}px)`;
+    btnPrev.disabled = current === 0;
+    btnNext.disabled = current >= maxIdx;
+  }
+
+  btnPrev.addEventListener('click', () => { current = Math.max(0, current - 1); update(); });
+  btnNext.addEventListener('click', () => { current = Math.min(cards.length - perView, current + 1); update(); });
+  window.addEventListener('resize', update);
+  update();
+})();
+
+// ─── REVIEW CARD "ЧИТАТЬ" ─────────────────────────────
+document.querySelectorAll('.review-card-read').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const text    = btn.previousElementSibling;
+    const expand  = text.classList.toggle('expanded');
+    btn.textContent = expand ? 'Свернуть' : 'Читать';
+  });
+});
+
 // ─── GALLERY LIGHTBOX (simple) ────────────────────────
 document.querySelectorAll('.gallery-item').forEach(item => {
   item.addEventListener('click', () => {
