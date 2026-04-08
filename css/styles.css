@@ -371,9 +371,11 @@ section:nth-child(even):not(#hero) {
 }
 
 .advantage-icon {
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   margin-bottom: 1rem;
   display: block;
+  color: var(--accent);
+  line-height: 1;
 }
 
 .advantage h3 {
@@ -433,6 +435,8 @@ section:nth-child(even):not(#hero) {
   font-size: 2rem;
   margin-bottom: 1rem;
   display: block;
+  color: var(--accent);
+  line-height: 1;
 }
 
 .service h3 { color: var(--white); margin-bottom: 0.6rem; }
@@ -679,9 +683,12 @@ section:nth-child(even):not(#hero) {
 }
 
 .contact-row-icon {
-  font-size: 1.2rem;
-  margin-top: 2px;
+  font-size: 1.1rem;
+  margin-top: 3px;
   flex-shrink: 0;
+  color: var(--accent);
+  width: 22px;
+  text-align: center;
 }
 
 .contact-row-text strong {
