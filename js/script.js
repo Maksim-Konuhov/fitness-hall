@@ -146,14 +146,15 @@ forms.forEach(form => {
 
 // ─── REVIEWS SLIDER ──────────────────────────────────
 (function () {
+  const wrap    = document.querySelector('.reviews-slider-wrap');
   const track   = document.querySelector('.reviews-track');
   const btnPrev = document.querySelector('.rev-prev');
   const btnNext = document.querySelector('.rev-next');
-  if (!track || !btnPrev || !btnNext) return;
+  if (!track || !btnPrev || !btnNext || !wrap) return;
 
-  const cards       = track.querySelectorAll('.review-card');
-  let   current     = 0;
-  let   perView     = 4;
+  const cards = Array.from(track.querySelectorAll('.review-card'));
+  let current  = 0;
+  const GAP    = 24;
 
   function getPerView() {
     const w = window.innerWidth;
@@ -164,20 +165,29 @@ forms.forEach(form => {
   }
 
   function update() {
-    perView = getPerView();
-    const cardW  = track.querySelector('.review-card').getBoundingClientRect().width;
-    const gap    = 24;
+    const perView = getPerView();
+    // Card width = wrapper width divided by visible cards, minus gaps between them
+    const wrapW = wrap.offsetWidth;
+    const cardW = Math.floor((wrapW - (perView - 1) * GAP) / perView);
+
+    cards.forEach(c => {
+      c.style.width    = cardW + 'px';
+      c.style.minWidth = cardW + 'px';
+    });
+
     const maxIdx = Math.max(0, cards.length - perView);
-    current      = Math.min(current, maxIdx);
-    track.style.transform = `translateX(-${current * (cardW + gap)}px)`;
+    current = Math.min(current, maxIdx);
+    track.style.transform = `translateX(-${current * (cardW + GAP)}px)`;
+
     btnPrev.disabled = current === 0;
     btnNext.disabled = current >= maxIdx;
   }
 
   btnPrev.addEventListener('click', () => { current = Math.max(0, current - 1); update(); });
-  btnNext.addEventListener('click', () => { current = Math.min(cards.length - perView, current + 1); update(); });
+  btnNext.addEventListener('click', () => { current++; update(); });
   window.addEventListener('resize', update);
-  update();
+  // Wait for layout, then init
+  requestAnimationFrame(update);
 })();
 
 // ─── REVIEW CARD "ЧИТАТЬ" ─────────────────────────────
