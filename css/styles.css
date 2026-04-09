@@ -203,8 +203,7 @@ nav ul li a:hover {
   color: var(--gray);
 }
 
-.nav-dropdown:hover .dropdown-trigger .fa-chevron-down,
-.nav-dropdown.open  .dropdown-trigger .fa-chevron-down {
+.nav-dropdown.open .dropdown-trigger .fa-chevron-down {
   transform: rotate(180deg);
   color: var(--accent);
 }
@@ -241,8 +240,7 @@ nav ul li a:hover {
   border-top:  1px solid rgba(230,50,0,.3);
 }
 
-.nav-dropdown:hover .dropdown-menu,
-.nav-dropdown.open  .dropdown-menu {
+.nav-dropdown.open .dropdown-menu {
   opacity: 1;
   pointer-events: all;
   transform: translateX(-50%) translateY(0);
