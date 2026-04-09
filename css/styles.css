@@ -224,6 +224,10 @@ nav ul li a:hover {
   transition: opacity 0.22s ease, transform 0.22s ease;
   z-index: 500;
   list-style: none;
+  display: flex !important;
+  flex-direction: column !important;
+  flex-wrap: nowrap !important;
+  gap: 0 !important;
 }
 
 /* arrow tip */
