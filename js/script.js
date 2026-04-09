@@ -27,6 +27,8 @@ if (burger && navUl) {
 
   navUl.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', () => {
+      // не закрывать бургер при клике на dropdown-trigger
+      if (a.classList.contains('dropdown-trigger')) return;
       navUl.classList.remove('open');
       burger.querySelectorAll('span')[0].style.transform = '';
       burger.querySelectorAll('span')[1].style.opacity   = '1';
@@ -39,16 +41,17 @@ if (burger && navUl) {
 document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
   trigger.addEventListener('click', e => {
     e.preventDefault();
+    e.stopPropagation(); // не даём сработать обработчику "закрыть при клике снаружи"
     const li = trigger.closest('.nav-dropdown');
     li.classList.toggle('open');
-    // close others
+    // закрыть другие открытые дропдауны
     document.querySelectorAll('.nav-dropdown').forEach(d => {
       if (d !== li) d.classList.remove('open');
     });
   });
 });
 
-// close dropdown on outside click
+// закрыть dropdown при клике вне него
 document.addEventListener('click', e => {
   if (!e.target.closest('.nav-dropdown')) {
     document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
